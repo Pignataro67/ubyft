@@ -32,3 +32,37 @@ export function fetchPickupLocation(input) {
       dispatch({ type: 'DISPLAY_PICKUP_LOCATIONS', suggestedPickupLocations }));
   };
 }
+
+export function fetchDropOff(input) {
+  console.log(input)
+    return (dispatch) => {
+      dispatch({ type: 'FETCHING_SUGGESTED_DROPOFFS' });
+      _fetchLocation(input).then(suggestedDropOffs => 
+      dispatch({ type: 'DISPLAY_DROPOFFS', suggestedDropoffs }));
+  };
+}
+  
+export function convertLatLong(pickupLocation, dropoffLocation) {
+  console.log(location)
+  return async (dispatch) => {
+  await dispatch(_convertPickupLatLong(pickupLocation))
+  await dispatch(_convertDropoffLatLong(dropoffLocation))
+  }
+}
+  
+export function fetchUberEstimate(pickupLat, pickupLong, dropoffLat, dropoffLong) {
+  return (dispatch) => {
+    fetch(`RailsApi/uber?pickupLat=${pickupLat}&pickupLong=${pickupLong}&dropoffLat=${dropoffLat}&dropoffLong=${dropoffLong}`)
+    .then(res => res.json())
+    .then(data => dispatch({ type: 'ADD_UBER_ESTIMATES_TO_STATE', estimate: data.prices}))
+  };
+}
+  
+export function fetchLyftEstimate(pickupLat, pickupLong, dropoffLat, dropoffLong) {
+  return (dispatch) => {
+    dispatch({ type: 'FETCHING_LYFT_ESTIMATE'});
+    fetch(`RailsApi/lyft?pickupLat=${pickupLat}&pickupLong=${pickupLong}&dropoffLat=${dropoffLat}&dropoffLong=${dropoffLong}`)
+    .then(res => res.json())
+    .then(data => dispatch({ type: 'ADD_LYFT_ESTIMATES_TO_STATE', estimate: data.cost_estimates}))
+  };
+}
