@@ -28,7 +28,23 @@ class RouteMap extends Component {
   }
 
   render() {
-    return ("Hello!")
+    const { Map } = this.state
+    return Map? (
+      <Map
+      style="mapbox://styles/mapbox/streets-v9"
+      center={[this.props.startLong, this.props.startlat]}
+      containerStyle={{
+        height: "300px",
+        width: "300px"
+      }}>
+        <Marker coordinates={[this.props.startLong, this.props.startlat]}>
+          <Icon name="circle" />
+        </Marker>
+        <Marker coordinates={[this.props.dropoffLong, this.props.dropOffLat]}>
+          <Icon name="circle" />
+        </Marker>
+      </Map>
+    ): null
   }
 }
 
