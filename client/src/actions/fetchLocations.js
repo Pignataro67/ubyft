@@ -75,7 +75,7 @@ export function fetchUberEstimate(pickupLat, pickupLong, dropoffLat, dropoffLong
 export function fetchLyftEstimate(pickupLat, pickupLong, dropoffLat, dropoffLong) {
   return (dispatch) => {
     dispatch({ type: 'FETCHING_LYFT_ESTIMATE'});
-    fetch(`RailsApi/lyft?pickupLat=${pickupLat}&pickupLong=${pickupLong}&dropoffLat=${dropoffLat}&dropoffLong=${dropoffLong}`)
+    fetch(`/RailsApi/lyft?pickupLat=${pickupLat}&pickupLong=${pickupLong}&dropoffLat=${dropoffLat}&dropoffLong=${dropoffLong}`)
     .then(res => res.json())
     .then(data => _normalizeLyft(data))
     .then(estimates => dispatch({ type: 'ADD_LYFT_ESTIMATES_TO_STATE', estimates: estimates }))
