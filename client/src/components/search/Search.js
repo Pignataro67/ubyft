@@ -55,7 +55,23 @@ class Search extends Component {
 
   render() {
     return (
-      "Hello!"
+        <Card >
+        <SearchInput label="Pickup Location" 
+
+        suggestedLocations = {this.props.suggestedStartingLocations} 
+        onChange={this.handleChangeStart} 
+        onSubmit={this.handleStartSearch}
+        handleUpdateAddress={this.handleUpdateAddress} 
+        value={this.state.pickupLocation}/>
+        <br/>
+        <SearchInput label="DropOff" 
+          suggestedLocations={this.props.suggestedDropOffs}
+          onChange={this.handleChangeDestination} 
+          onSubmit={this.handleDropOffSearch}
+          handleUpdateAddress={this.handleUpdateDropOffAddress}/>
+        <br/>
+        <Button buttonTitle="Submit" onClick={this.handleFormSubmit}/>
+    </Card >
     )
   }
 }
