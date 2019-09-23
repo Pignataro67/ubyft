@@ -38,7 +38,21 @@ class SearchInput extends Component {
 
   render() {
     return (
-      "Hello"
+        <form onSubmit={this.props.onSubmit}>
+        <Dropdown 
+          onSearchChange={this.props.onChange}
+          onChange={this.handleDropDownChange} 
+          placeholder={this.props.label} 
+          search selection
+          onFocus={this.onFocus}
+          options={this.state.suggestedLocations} 
+          open={this.state.isDropDownOpen || false}
+          icon={<span></span>}
+      />
+      <Button Icon>
+        <Icon name='search'/>
+      </Button>
+    </form>
     )
   }
 }
