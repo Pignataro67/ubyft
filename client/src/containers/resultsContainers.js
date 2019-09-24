@@ -5,10 +5,15 @@ import card from '../components/Card';
 
 class ResultsContainer extends Component {
   render() {
-    let cardlabel = "shutup and drive"
+    const cardStyle = {
+      display: 'flex',
+      flexDirection: 'column',
+      WebkitTransition: 'all',
+      msTransition: 'all'
+    };
 
     return (
-      <Card>
+      <Card style={cardStyle}>
         <CardLabel cardLabel={cardLabel} />
         <Results />
       </Card>
