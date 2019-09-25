@@ -8,27 +8,43 @@ import ResultsContainer from './containers/ResultsContainer';
 import SearchContainer from './containers/SearchContainer';
 import { getMapboxKey } from './actions/fetchLocations'
 import './App.css';
+import PageTitle from './components/PageTitle';
 
-function App() {
+class App extends Component {
+
+  componentDidMount() {
+    this.props.getMapboxKey()
+  }
+
+  render() {
   return (
     <div style ={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      width: 'auto',
-      height: 'auto',
+      width: '100vw',
+      height: '100vh',
       backgroundImage: `url(${Background})`
     }} className="App">
-    <Router>
-      <div>
-        <Route exact path="/" component ={SearchContainer}/>
-        <Route exact path="/confirm_route" component={ConfirmRouteContainer}/>
-        <Route exact path="/results" component={ResultsContainer}/>
+        <Router>
+          <div>
+            <Route exact path="/" component ={SearchContainer}/>
+            <Route exact path="/confirm_route" component={ConfirmRouteContainer}/>
+            <Route exact path="/results" component={ResultsContainer}/>
+          </div>
+        </Router>
       </div>
-    </Router>
-  </div>
-  );
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {statrtingLocation: state.StartingLocation, destination: state.destination}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {getMapboxKey: () => dispatch(getMapboxKey())}
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(App);
