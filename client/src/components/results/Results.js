@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import Result from './Result';
 import Card from '../Card';
+import Loader from 'react-loaders';
 
 class Results extends Commponent {
+
+  componentDidMount() {
+    if(this.props.isFetchingUberEstimate) {
+      return <Loader type="line-scale" active />
+    }
+  }
+
+  componentDidUpdate() {
+    return <Loader type="line-scale" hidden />
+  }
+
   render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
