@@ -16,7 +16,7 @@ class Result extends Component {
       estimates
     })
   }
-
+  
   handleOnClick = (idx) => {
     let estimate = this.state.estimates[idx]
     let estimates = this.state.estimates
@@ -29,10 +29,11 @@ class Result extends Component {
   }
 
   tableRows(estimates) {
-    return estimates.map(({type, costEstimate}) => (
-      <Table.Row><Table.Cell>{type}</Table.Cell> <Table.Cell>{costEstimate}</Table.Cell></Table.Row>
-      ))
-    }
+    return estimates.map((estimate, idx) => {
+      return <Table.Row><Table.Cell>{estimate.type}</Table.Cell> <Table.Cell>{estimate.costEstimate}</Table.Cell> <Table.Cell><Button buttonTitle={`Like ${estimate.counter}`}
+       onClick={ () => this.handleOnClick(idx)}></Button></Table.Cell></Table.Row>
+    })
+  }
 
     render() {
     return (
@@ -43,10 +44,11 @@ class Result extends Component {
               <Table.Row>
                 <Table.HeaderCell>Ride Type</Table.HeaderCell>
                 <Table.HeaderCell>Cost</Table.HeaderCell>
+                <Table.HeaderCell>Like</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {this.tableRows(this.props.estimates)}
+              {this.tableRows(this.state.estimates)}
             </Table.Body>
           </Table>
           <Button buttonTitle={this.props.buttonTitle}/>
