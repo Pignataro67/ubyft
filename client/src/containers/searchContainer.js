@@ -27,4 +27,10 @@ const mapDispatchToProps = (dispatch) => {
   return {...bindActionCreators(searchActions, dispatch)}
 }
 
-export default SearchContainer;
+export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => {
+  return {
+    ...stateProps, 
+    actions: dispatchProps, 
+    router: ownProps,
+  };
+})(SearchContainer);
