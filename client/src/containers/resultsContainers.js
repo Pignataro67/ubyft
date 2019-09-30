@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Results from '../components/results/Results';
 import CardLabel from '../components/CardLabel';
-import card from '../components/Card';
+import Card from '../components/Card';
+import { connect } from 'react-redux';
 
 class ResultsContainer extends Component {
   render() {
@@ -15,10 +16,14 @@ class ResultsContainer extends Component {
     return (
       <Card style={cardStyle}>
         <CardLabel cardLabel={cardLabel} />
-        <Results />
+        <Results {...this.props}/>
       </Card>
     )
   }
 }
 
-export default ResultsContainer; 
+const mapStateToProps = state => ({
+  ...state
+})
+
+export default connect(mapStateToProps)(ResultsContainer); 
