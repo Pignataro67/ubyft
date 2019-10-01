@@ -4,7 +4,7 @@ import Cardlabel from '../components/CardLabel';
 import Card from '../components/Card';
 import * as searchActions from '../actions/fetchLocations';
 import { bindActionCreators } from 'redux';
-import { connect } from 'reaxct-redux';
+import { connect } from 'react-redux';
 
 class SearchContainer extends Component {
   render() {
