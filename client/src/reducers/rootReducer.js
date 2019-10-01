@@ -1,6 +1,4 @@
 export default function rootReducer(state = {
-    isFetchingMapboxKey: false,
-    mapBoxKey: '',
     isFetchingStartingLocation: false,
     isFetchingDropOff: false,
     suggestedPickupLocations: [],
@@ -17,10 +15,6 @@ export default function rootReducer(state = {
     lyftEstimates:  [{type: "LyftA", costEstimate: '$10-12'}, {type: "LyftA", costEstimate: '$10-12'}, {type: "LyftA", costEstimate: '$10-12'}, {type: "LyftA", costEstimate: '$10-12'}, {type: "LyftA", costEstimate: '$10-12'}, {type: "LyftA", costEstimate: '$10-12'}]
       }, action) {
       switch(action.type){
-        case "FETCHING_MAPBOX_KEY":
-          return {...state, isFetchingMapboxKey: true}
-        case "ADD_MAPBOX_KEY_TO_STATE":
-          return {...state, isFetchingMapboxKey: false, mapBoxKey: action.key}
         case "FETCHING_SUGGESTED_PICKUP_LOCATIONS":
           return {...state, isFetchingPickupLocation: true, suggestedPickupLocations: []}
         case "DISPLAY_PICKUP_LOCATIONS":
