@@ -14,9 +14,10 @@ class Result extends Component {
 
     const estimates = nextProps.estimates.map(({type, costEstimate}) => ({type: type, costEstimate: costEstimate, counter: 0}))
 
-    this.setState({
-      estimates
-    })
+      this.setState({
+        estimates
+      })
+    }
   }
   
   handleOnClick = (idx) => {
